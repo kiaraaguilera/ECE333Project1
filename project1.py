@@ -8,14 +8,16 @@ serverSocket = socket(AF_INET, SOCK_STREAM)
 #Prepare a sever socket
 
 serverPort = 6789       #Assign server port
-serverSocket.bind((socket.getHostName(), serverPort))
+serverSocket.bind((socket.getHostName(), serverPort)) #Binds the socket to the server address and port
 serverSocket.listen(1)      #Listens up to 1 connection at a time
+
 while True:
 #Establish the connection
+    
     print('Ready to serve...') 
     connectionSocket, addr = serverSocket.accept()
     try:
-        message = #Fill in start     #Fill in end 
+        message = connectionSocket.recv(1024) #Receives the request message
         filename = message.split()[1]
         f = open(filename[1:])
         outputdata = #Fill in start     #Fill in end 

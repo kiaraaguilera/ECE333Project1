@@ -8,7 +8,7 @@ serverSocket = socket(AF_INET, SOCK_STREAM)
 #Prepare a sever socket
 
 serverPort = 6789       #Assign server port
-serverSocket.bind('', serverPort) #Binds the socket to the server address and port
+serverSocket.bind(('', serverPort)) #Binds the socket to the server address and port
 serverSocket.listen(1)      #Listens up to 1 connection at a time
 
 while True:
@@ -17,12 +17,12 @@ while True:
     print('Ready to serve...') 
     connectionSocket, addr = serverSocket.accept()
     try:
-        message = connectionSocket.recv(1024) #Receives the request message
+        message = connectionSocket.recv(1024).decode() #Receives the request message
         filename = message.split()[1]
         f = open(filename[1:])
         outputdata = f.read() 
         #Send one HTTP header line into socket
-        connectionSocket.send("HTTP/1.1 200 OK\r\n\r\n")
+        connectionSocket.send("HTTP/1.1 200 OK\r\n\r\n".encode())
        
 
         #Send the content of the requested file to the client 

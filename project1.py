@@ -20,10 +20,11 @@ while True:
         message = connectionSocket.recv(1024) #Receives the request message
         filename = message.split()[1]
         f = open(filename[1:])
-        outputdata = #Fill in start     #Fill in end 
+        outputdata = f.read() 
         #Send one HTTP header line into socket
-        #Fill in start
-        #Fill in end
+        connectionSocket.send("HTTP/1.1 200 OK\r\n\r\n")
+       
+
         #Send the content of the requested file to the client 
         for i in range(0, len(outputdata)):
             connectionSocket.send(outputdata[i].encode()) 
